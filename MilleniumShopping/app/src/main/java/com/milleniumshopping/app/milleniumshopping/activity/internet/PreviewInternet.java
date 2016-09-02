@@ -32,7 +32,7 @@ public class PreviewInternet extends AppCompatActivity {
         price = ((TextView)findViewById(R.id.textView12));
         price.setText(internet.getPrice());
 
-        dataAllowance = ((TextView)findViewById(R.id.textView13));
+        dataAllowance = ((TextView)findViewById(R.id.textView23));
         dataAllowance.setText(internet.getDataAllowance());
 
         type = ((TextView)findViewById(R.id.textView14));

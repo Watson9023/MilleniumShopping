@@ -87,6 +87,7 @@ public class ShopRepositoryImpl extends SQLiteOpenHelper implements ShopReposito
     @Override
     public Shop save(Shop shop) {
         open();
+        onCreate(database);
         ContentValues values = new ContentValues();
 
         values.put(COLUMN_SHOPNUMBER, shop.getShopNumber());

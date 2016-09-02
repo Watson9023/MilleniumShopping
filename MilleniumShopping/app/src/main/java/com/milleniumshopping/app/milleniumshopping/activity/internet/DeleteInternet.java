@@ -1,67 +1,50 @@
-package com.milleniumshopping.app.milleniumshopping.activity.employee;
+package com.milleniumshopping.app.milleniumshopping.activity.internet;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.milleniumshopping.app.milleniumshopping.R;
-import com.milleniumshopping.app.milleniumshopping.activity.MainActivity;
-import com.milleniumshopping.app.milleniumshopping.domain.employee.Employee;
-import com.milleniumshopping.app.milleniumshopping.repository.employee.EmployeeRepository;
-import com.milleniumshopping.app.milleniumshopping.repository.employee.Impl.EmployeeRepositoryImpl;
+import com.milleniumshopping.app.milleniumshopping.domain.internet.Internet;
+import com.milleniumshopping.app.milleniumshopping.repository.internet.Impl.InternetRepositoryImpl;
+import com.milleniumshopping.app.milleniumshopping.repository.internet.InternetRepository;
 
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Set;
-
-public class ViewEmployee extends AppCompatActivity {
-
-    ArrayAdapter adapter;
-    ListView listView;
-    String[] names;
-    Set<Employee> employeeSet = new HashSet<>();
+public class DeleteInternet extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_view_employee);
+        setContentView(R.layout.activity_delete_internet);
+    }
 
-        EmployeeRepository employeeRepository = new EmployeeRepositoryImpl(this.getApplicationContext());
+    public void deleteByID(View v)
+    {
+        String ipAddress = ((EditText)findViewById(R.id.editText84)).getText().toString();
+        InternetRepository internetRepository = new InternetRepositoryImpl(this.getApplicationContext());
+        Internet internet = new Internet.Builder()
+                .ipAddress(ipAddress)
+                .build();
+        internetRepository.delete(internet);
+    }
 
-        employeeSet = new HashSet<>();
-        employeeSet = employeeRepository.findAll();
+    public void deleteAll(View v)
+    {
+        InternetRepository internetRepository = new InternetRepositoryImpl(this.getApplicationContext());
+        int deleted = internetRepository.deleteAll();
 
-        Iterator<Employee> employeeIterator = employeeSet.iterator();
-
-        if(employeeSet.size()>0)
+        if(deleted > 0)
         {
-            names = new String[employeeSet.size()];
-            int i = 0;
-
-            while(employeeIterator.hasNext())
-            {
-                names[i] = employeeIterator.next().toString();
-                i++;
-            }
-
-            adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,names);
-            listView = (ListView)findViewById(R.id.listView);
-            listView.setAdapter(adapter);
+            Toast.makeText(DeleteInternet.this, "Employees deleted successfully", Toast.LENGTH_SHORT).show();
         }
         else
         {
-            Toast.makeText(ViewEmployee.this, "No data", Toast.LENGTH_SHORT).show();
+            Toast.makeText(DeleteInternet.this, "No employees to delete", Toast.LENGTH_SHORT).show();
         }
-    }
 
-    public void returnHome(View v)
-    {
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, InternetMenu.class);
         startActivity(intent);
     }
 

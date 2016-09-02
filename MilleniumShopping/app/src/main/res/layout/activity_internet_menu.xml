@@ -42,6 +42,7 @@
         android:layout_height="wrap_content"
         android:text="delete all"
         android:id="@+id/button5"
+        android:onClick="deleteAll"
         android:layout_marginTop="40dp"
         android:layout_below="@+id/button4"
         android:layout_centerHorizontal="true" />

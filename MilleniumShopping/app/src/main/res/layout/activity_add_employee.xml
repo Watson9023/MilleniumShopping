@@ -88,8 +88,8 @@
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
         android:ems="10"
-        android:id="@+id/editText1"
-        android:layout_above="@+id/textView29"
+        android:id="@+id/editText90"
+        android:layout_alignBottom="@+id/textView28"
         android:layout_toRightOf="@+id/textView30"
         android:layout_toEndOf="@+id/textView30" />
 
@@ -98,30 +98,29 @@
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
         android:ems="10"
-        android:id="@+id/editText2"
-        android:layout_alignBottom="@+id/textView29"
-        android:layout_alignLeft="@+id/editText1"
-        android:layout_alignStart="@+id/editText1" />
+        android:id="@+id/editText91"
+        android:layout_above="@+id/textView30"
+        android:layout_toRightOf="@+id/textView30"
+        android:layout_toEndOf="@+id/textView30" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="date"
         android:ems="10"
-        android:id="@+id/editText3"
-        android:layout_alignBottom="@+id/textView30"
-        android:layout_toRightOf="@+id/textView30"
-        android:layout_alignRight="@+id/editText2"
-        android:layout_alignEnd="@+id/editText2" />
+        android:id="@+id/editText92"
+        android:layout_above="@+id/textView31"
+        android:layout_alignLeft="@+id/editText91"
+        android:layout_alignStart="@+id/editText91" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
         android:ems="10"
-        android:id="@+id/editText4"
+        android:id="@+id/editText93"
         android:layout_alignBottom="@+id/textView31"
-        android:layout_toRightOf="@+id/textView30"
-        android:layout_toEndOf="@+id/textView30" />
+        android:layout_alignLeft="@+id/editText92"
+        android:layout_alignStart="@+id/editText92" />
 
 </RelativeLayout>

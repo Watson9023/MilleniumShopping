@@ -33,9 +33,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Shops"
-        android:onClick="shopMenu"
         android:id="@+id/btnShops"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"
-        android:layout_below="@+id/btnInternetServices" />
+        android:layout_below="@+id/btnInternetServices"
+        android:enabled="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="*Shops is under construction"
+        android:id="@+id/textView"
+        android:layout_alignBottom="@+id/btnShops"
+        android:layout_toRightOf="@+id/btnEmployees"
+        android:layout_toEndOf="@+id/btnEmployees" />
 </RelativeLayout>

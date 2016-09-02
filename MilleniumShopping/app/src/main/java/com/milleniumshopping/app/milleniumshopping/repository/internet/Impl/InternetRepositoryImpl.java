@@ -3,6 +3,7 @@ package com.milleniumshopping.app.milleniumshopping.repository.internet.Impl;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.DatabaseErrorHandler;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
@@ -44,9 +45,18 @@ public class InternetRepositoryImpl extends SQLiteOpenHelper implements Internet
         super(context, DBConstants.DATABASE_NAME, null, DBConstants.DATABASE_VERSION);
     }
 
+    public InternetRepositoryImpl(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
+        super(context, name, factory, version);
+    }
+
+    public InternetRepositoryImpl(Context context, String name, SQLiteDatabase.CursorFactory factory, int version, DatabaseErrorHandler errorHandler) {
+        super(context, name, factory, version, errorHandler);
+    }
+
     public void open()
     {
         database = this.getWritableDatabase();
+        onCreate(database);
     }
 
     public void close()
@@ -57,7 +67,7 @@ public class InternetRepositoryImpl extends SQLiteOpenHelper implements Internet
     @Override
     public Internet findById(String ipAddress, String type)
     {
-        database =  this.getReadableDatabase();
+        SQLiteDatabase database =  this.getReadableDatabase();
         Cursor cursor = database.query(
                 TABLE_INTERNET,
                 new String[]{
@@ -153,16 +163,15 @@ public class InternetRepositoryImpl extends SQLiteOpenHelper implements Internet
     public int deleteAll() {
         open();
         int rowsDeleted = database.delete(TABLE_INTERNET, null, null);
-        close();
         return rowsDeleted;
     }
 
     @Override
     public Set<Internet> findAll() {
-        database = this.getReadableDatabase();
+        open();
         String selectAll = " SELECT * FROM " + TABLE_INTERNET;
         Set<Internet>internetServices = new HashSet<>();
-        open();
+
         Cursor cursor = database.rawQuery(selectAll, null);
 
         if(cursor.moveToFirst())
@@ -186,9 +195,9 @@ public class InternetRepositoryImpl extends SQLiteOpenHelper implements Internet
     }
 
     @Override
-    public void onCreate(SQLiteDatabase sqLiteDatabase)
+    public void onCreate(SQLiteDatabase database)
     {
-        database.execSQL("DROP TABLE IF EXISTS " + TABLE_INTERNET);
+        //database.execSQL("DROP TABLE IF EXISTS " + TABLE_INTERNET);
         database.execSQL(DATABASE_CREATE);
     }
 

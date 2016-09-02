@@ -24,7 +24,9 @@
         <activity android:name=".activity.internet.AddInternet" />
         <activity android:name=".activity.internet.InternetMenu" />
         <activity android:name=".activity.internet.PreviewInternet" />
-        <activity android:name=".activity.internet.ViewInternet"></activity>
+        <activity android:name=".activity.internet.ViewInternet" />
+        <activity android:name=".activity.internet.DeleteInternet" />
+        <activity android:name=".activity.internet.UpdateInternet"></activity>
     </application>
 
 </manifest>

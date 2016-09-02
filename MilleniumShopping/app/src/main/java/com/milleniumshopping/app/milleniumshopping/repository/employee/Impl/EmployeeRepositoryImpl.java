@@ -54,6 +54,7 @@ public class EmployeeRepositoryImpl extends SQLiteOpenHelper implements Employee
     public void open()
     {
         database = this.getWritableDatabase();
+        onCreate(database);
     }
 
     public void close()
